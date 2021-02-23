@@ -4,6 +4,7 @@ import android.content.res.AssetManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Files.isDirectory
@@ -16,15 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         // Get everything in the assets folder
         val textList = DataSource(this).getTextAssets()
-        // Debugging
-        val tV: TextView = findViewById(R.id.mainText)
-        if (textList != null) {
-            var str: String = ""
-            for (item in textList) {
-                str += item + "\n"
-            }
-            tV.text = str
-        }
+
+        //Do the recycler view thing
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        recyclerView.adapter = SongFileAdapter(textList)
 
     }
 }
