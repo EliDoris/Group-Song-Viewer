@@ -20,11 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         //Alternate method for getting song info
         val infoList = DataSource(this).getSongInfo()
-        val textList = getTitles(infoList)
+        //val textList = getTitles(infoList)
 
         //Do the recycler view thing
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-        recyclerView.adapter = SongFileAdapter(textList)
+        recyclerView.adapter = SongFileAdapter(infoList)
 
     }
 }
