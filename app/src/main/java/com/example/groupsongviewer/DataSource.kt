@@ -91,7 +91,7 @@ class DataSource(val context: Context) {
     //Get an array of song infos
     fun getSongInfo(): Array<SongInfo> {
         //Initialize the output
-        var sList = mutableListOf<SongInfo>()
+        val sList = mutableListOf<SongInfo>()
 
         //Get the assets and convert to list form
         val amg: AssetManager = context.assets
@@ -119,10 +119,10 @@ class DataSource(val context: Context) {
     private var ns: String? = null
     @Throws(XmlPullParserException::class, IOException::class)
     fun parseSongInfo(inputStream: InputStream): SongInfo {
-        inputStream.use {inputStream ->
+        inputStream.use {iStream ->
             val parser: XmlPullParser = Xml.newPullParser()
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
-            parser.setInput(inputStream, null)
+            parser.setInput(iStream, null)
             parser.nextTag()
             return readSongInfo(parser)
         }
@@ -131,8 +131,11 @@ class DataSource(val context: Context) {
     @Throws(XmlPullParserException::class, IOException::class)
     fun readSongInfo(parser: XmlPullParser): SongInfo {
         //Initialize output
-        var title: String = ""
-        var artist: String = ""
+        var title = ""
+        var artist = ""
+        var structure = ""
+        val choruses = mutableListOf<String>()
+        val verses = mutableListOf<String>()
         //Make sure we're dealing with a song
         parser.require(XmlPullParser.START_TAG, ns, "song")
         //Iterate until EOF
@@ -145,10 +148,13 @@ class DataSource(val context: Context) {
             when (parser.name) {
                 "title" -> title = readText(parser)
                 "artist" -> artist = readText(parser)
+                "structure" -> structure = readText(parser)
+                "chorus" -> choruses.add(readText(parser))
+                "verse" -> verses.add(readText(parser))
                 else -> skip(parser)
             }
         }
-        return SongInfo(title,artist)
+        return SongInfo(title,artist,structure,choruses,verses)
     }
 
     //Function for reading text

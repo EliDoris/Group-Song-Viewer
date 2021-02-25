@@ -2,4 +2,33 @@
 <song>
     <title>Wellerman</title>
     <artist>The Longest Johns</artist>
+    <structure>V1,C,V2,C,V3,C,V4,C,V5,C,V6</structure>
+    <chorus> Soon may the Wellerman come 
+    And bring us sugar and tea and rum.
+    One day, when the tonguin’ is done, 
+    We’ll take our leave and go. </chorus>
+    <verse>There once was a ship that put to sea,
+        The name of the ship was the Billy of Tea
+        The winds blew up, her bow dipped down,
+        O blow, my bully boys, blow.</verse>
+    <verse>She had not been two weeks from shore
+        When down on her a right whale bore.
+        The captain called all hands and swore
+        He’d take that whale in tow.</verse>
+    <verse>Before the boat had hit the water
+        The whale’s tail came up and caught her.
+        All hands to the side, harpooned and fought her
+        When she dived down below.</verse>
+    <verse>No line was cut, no whale was freed;
+        The Captain’s mind was not of greed,
+        But he belonged to the whaleman’s creed;
+        She took the ship in tow.</verse>
+    <verse>For forty days, or even more,
+        The line went slack, then tight once more.
+        All boats were lost (there were only four)
+        But still the whale did go.</verse>
+    <verse>As far as I know, the fight’s still on;
+        The line’s not cut and the whale’s not gone.
+        The Wellerman makes his regular call
+        To the Captain, crew, and all.</verse>
 </song>
