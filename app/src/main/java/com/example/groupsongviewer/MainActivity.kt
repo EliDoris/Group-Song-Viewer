@@ -16,7 +16,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Get everything in the assets folder
-        val textList = DataSource(this).getTextAssets()
+        //val textList = DataSource(this).getXmlTitles()
+
+        //Alternate method for getting song info
+        val infoList = DataSource(this).getSongInfo()
+        val textList = getTitles(infoList)
 
         //Do the recycler view thing
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
