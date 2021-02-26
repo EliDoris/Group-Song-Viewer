@@ -1,5 +1,6 @@
 package com.example.groupsongviewer
 
+import android.content.Intent
 import android.content.res.AssetManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,13 +12,13 @@ import java.nio.file.Files
 import java.nio.file.Files.isDirectory
 import java.nio.file.Path
 
+//Identifier constant
+const val EXTRA_SONGINFO = "com.example.groupsongviewer.SONGINFO"
+
 class MainActivity : AppCompatActivity(), CellClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Get everything in the assets folder
-        //val textList = DataSource(this).getXmlTitles()
 
         //Alternate method for getting song info
         val infoList = DataSource(this).getSongInfo()
@@ -31,7 +32,11 @@ class MainActivity : AppCompatActivity(), CellClickListener {
 
     //This happens any time a song title/artist is clicked
     override fun onCellClickListener(sInfo: SongInfo) {
-        //Toast on-screen notification
-        Toast.makeText(this, sInfo.title, Toast.LENGTH_SHORT).show()
+
+        //Create a new intent and activity
+        val intent = Intent(this,SongActivity::class.java).apply{
+            putExtra(EXTRA_SONGINFO,sInfo)
+        }
+        startActivity(intent)
     }
 }

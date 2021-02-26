@@ -1,7 +1,9 @@
 package com.example.groupsongviewer
 
+import java.io.Serializable
+
 //Data class definition
-data class SongInfo(val title: String, val artist: String, val structure: String, val choruses: List<String>, val verses: List<String>)
+data class SongInfo(val title: String, val artist: String, val structure: String, val choruses: List<String>, val verses: List<String>): Serializable
 
 //Get all of the titles
 fun getTitles(sList: Array<SongInfo>): Array<String> {
