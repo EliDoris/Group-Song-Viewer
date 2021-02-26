@@ -9,7 +9,7 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
 
-class DataSource(val context: Context) {
+class DataSource(private val context: Context) {
 
     //NO LONGER NECESSARY
     /*

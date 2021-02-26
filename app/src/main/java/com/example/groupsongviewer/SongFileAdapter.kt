@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class SongFileAdapter(private val songList: Array<SongInfo>):
+class SongFileAdapter(private val songList: Array<SongInfo>, private val cellClickListener: CellClickListener):
     RecyclerView.Adapter<SongFileAdapter.SongViewHolder>() {
 
     // Describes an item view and its place within the RecyclerViewer
@@ -17,6 +17,7 @@ class SongFileAdapter(private val songList: Array<SongInfo>):
         fun bind(sInfo: SongInfo) {
             songTitleView.text = sInfo.title
             songArtistView.text = sInfo.artist
+
         }
     }
 
@@ -36,5 +37,9 @@ class SongFileAdapter(private val songList: Array<SongInfo>):
     //Display data at a certain position
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         holder.bind(songList[position])
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener(songList[position])
+        }
     }
 }
+
