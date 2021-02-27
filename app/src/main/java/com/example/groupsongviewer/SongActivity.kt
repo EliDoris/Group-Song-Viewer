@@ -1,7 +1,12 @@
 package com.example.groupsongviewer
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -28,13 +33,12 @@ class SongActivity : AppCompatActivity() {
         //Get the intent that started the activity, and get its song info object
         sInfo = intent.getSerializableExtra(EXTRA_SONGINFO) as SongInfo
 
-        //Set the structure
-        val structureText = findViewById<TextView>(R.id.structure_text)
-        structureText.text = sInfo.structure
-
         //Chorus and verse max and current indices
         vMax =  sInfo.verses.size - 1
         cMax = sInfo.choruses.size - 1
+
+        //Initial highlight, which serves to set the text initially
+        highlightStructure()
 
         //Set verse header and text
         val verseHeaderText = findViewById<TextView>(R.id.verse_header_text)
@@ -91,6 +95,8 @@ class SongActivity : AppCompatActivity() {
             vIndex++
             setMultipleVerseInfo()
         }
+        //Re-do the highlighting
+        highlightStructure()
     }
     fun decrementVerse(view: View) {
         //Invalid condition checking
@@ -103,6 +109,8 @@ class SongActivity : AppCompatActivity() {
             vIndex--
             setMultipleVerseInfo()
         }
+        //Re-do the highlighting
+        highlightStructure()
     }
     fun incrementChorus(view: View) {
         //Invalid condition checking
@@ -115,6 +123,8 @@ class SongActivity : AppCompatActivity() {
             cIndex++
             setMultipleChorusInfo()
         }
+        //Re-do the highlighting
+        highlightStructure()
     }
     fun decrementChorus(view: View) {
         //Invalid condition checking
@@ -127,6 +137,8 @@ class SongActivity : AppCompatActivity() {
             cIndex--
             setMultipleChorusInfo()
         }
+        //Re-do the highlighting
+        highlightStructure()
     }
 
     //Helper functions for setting verse/chorus info
@@ -159,4 +171,41 @@ class SongActivity : AppCompatActivity() {
         (chorusButtonRight.parent as ViewGroup).removeView(chorusButtonRight)
     }
 
+    //Functions for highlighting
+    private fun highlightStructure() {
+        //Get the text view
+        val structureText = findViewById<TextView>(R.id.structure_text)
+        //Initialize a spannable string
+        val sString = SpannableString(sInfo.structure)
+
+        //Operate on verses
+        //Only need to do this if there is more than one verse
+        if (vMax > 0) {
+            //Pattern string
+            val patternStr = "V"+(vIndex+1).toString()
+            //Match the pattern
+            val regex = patternStr.toRegex()
+            val matchResults = regex.findAll(sString.toString())
+            //Do the highlighting
+            for (item in matchResults) {
+                sString.setSpan(BackgroundColorSpan(Color.YELLOW),item.range.first,item.range.last+1,0)
+            }
+        }
+        //Operate on choruses
+        //Only need to do this if there is more than one chorus
+        if (cMax > 0) {
+            //Pattern string
+            val patternStr = "C"+(cIndex+1).toString()
+            //Match the pattern
+            val regex = patternStr.toRegex()
+            val matchResults = regex.findAll(sString.toString())
+            //Do the highlighting
+            for (item in matchResults) {
+                sString.setSpan(BackgroundColorSpan(Color.RED),item.range.first,item.range.last+1,0)
+            }
+        }
+
+        //Actually set the text
+        structureText.text = sString
+    }
 }
