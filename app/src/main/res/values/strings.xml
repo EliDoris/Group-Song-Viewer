@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Group Song Viewer</string>
     <string name="default_text">Default Text</string>
+    <string name="song_structure_header_default">Song Structure:</string>
+    <string name="verse_header_default">Verse:</string>
+    <string name="chorus_header_default">Chorus:</string>
+    <string name="left_button">&lt;</string>
+    <string name="right_button">&gt;</string>
 </resources>
