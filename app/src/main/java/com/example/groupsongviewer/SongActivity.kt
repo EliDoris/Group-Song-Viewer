@@ -33,6 +33,10 @@ class SongActivity : AppCompatActivity() {
         //Get the intent that started the activity, and get its song info object
         sInfo = intent.getSerializableExtra(EXTRA_SONGINFO) as SongInfo
 
+        //Set the title
+        val actionTitle = sInfo.title+" - "+sInfo.artist
+        title = actionTitle
+
         //Chorus and verse max and current indices
         vMax =  sInfo.verses.size - 1
         cMax = sInfo.choruses.size - 1
