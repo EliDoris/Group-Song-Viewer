@@ -36,18 +36,6 @@
         app:layout_constraintTop_toBottomOf="@+id/song_structure_header_text" />
 
     <TextView
-        android:id="@+id/chorus_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/default_text"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/verse_text"
-        app:layout_constraintStart_toStartOf="@+id/verse_header_text"
-        app:layout_constraintTop_toBottomOf="@+id/chorus_header_text" />
-
-    <TextView
         android:id="@+id/song_structure_header_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,12 +69,6 @@
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="@+id/verse_header_text"
         app:layout_constraintTop_toBottomOf="@+id/verse_text" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
 
     <Button
         android:id="@+id/verse_button_right"
@@ -122,7 +104,7 @@
         android:onClick="incrementChorus"
         android:text="@string/right_button"
         app:layout_constraintBottom_toBottomOf="@+id/chorus_header_text"
-        app:layout_constraintEnd_toEndOf="@+id/chorus_text"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
         app:layout_constraintTop_toTopOf="@+id/chorus_header_text" />
 
     <Button
@@ -137,5 +119,33 @@
         app:layout_constraintBottom_toBottomOf="@+id/chorus_header_text"
         app:layout_constraintEnd_toStartOf="@+id/chorus_button_right"
         app:layout_constraintTop_toTopOf="@+id/chorus_header_text" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chorus_header_text">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/chorus_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/default_text"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
