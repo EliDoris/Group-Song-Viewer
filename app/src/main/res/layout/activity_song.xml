@@ -7,17 +7,16 @@
     tools:context=".SongActivity">
 
     <TextView
-        android:id="@+id/verse_text"
-        android:layout_width="0dp"
+        android:id="@+id/song_structure_header_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/default_text"
+        android:layout_marginTop="16dp"
+        android:text="@string/song_structure_header_default"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/verse_header_text"
-        app:layout_constraintTop_toBottomOf="@+id/verse_header_text" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/structure_text"
@@ -35,117 +34,149 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/song_structure_header_text" />
 
-    <TextView
-        android:id="@+id/song_structure_header_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/song_structure_header_default"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/verse_header_text"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="@string/verse_header_default"
-        android:textColor="@color/black"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/structure_text" />
-
-    <TextView
-        android:id="@+id/chorus_header_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/chorus_header_default"
-        android:textColor="@color/black"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="@+id/verse_header_text"
-        app:layout_constraintTop_toBottomOf="@+id/verse_text" />
-
-    <Button
-        android:id="@+id/verse_button_right"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:onClick="incrementVerse"
-        android:text="@string/right_button"
-        app:layout_constraintBottom_toBottomOf="@+id/verse_header_text"
-        app:layout_constraintEnd_toEndOf="@+id/verse_text"
-        app:layout_constraintTop_toTopOf="@+id/verse_header_text" />
-
-    <Button
-        android:id="@+id/verse_button_left"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:onClick="decrementVerse"
-        android:text="@string/left_button"
-        app:layout_constraintBottom_toBottomOf="@+id/verse_button_right"
-        app:layout_constraintEnd_toStartOf="@+id/verse_button_right"
-        app:layout_constraintTop_toTopOf="@+id/verse_button_right" />
-
-    <Button
-        android:id="@+id/chorus_button_right"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:onClick="incrementChorus"
-        android:text="@string/right_button"
-        app:layout_constraintBottom_toBottomOf="@+id/chorus_header_text"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
-        app:layout_constraintTop_toTopOf="@+id/chorus_header_text" />
-
-    <Button
-        android:id="@+id/chorus_button_left"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:onClick="decrementChorus"
-        android:text="@string/left_button"
-        app:layout_constraintBottom_toBottomOf="@+id/chorus_header_text"
-        app:layout_constraintEnd_toStartOf="@+id/chorus_button_right"
-        app:layout_constraintTop_toTopOf="@+id/chorus_header_text" />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:weightSum="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chorus_header_text">
+        app:layout_constraintTop_toBottomOf="@+id/structure_text">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:layout_weight="2">
 
             <TextView
-                android:id="@+id/chorus_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/default_text"
+                android:id="@+id/verse_header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/verse_header_default"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </ScrollView>
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/verse_button_left"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="decrementVerse"
+                android:text="@string/left_button"
+                app:layout_constraintEnd_toStartOf="@+id/verse_button_right"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/verse_button_right"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="incrementVerse"
+                android:text="@string/right_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:id="@+id/scrollView3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/verse_header_text">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/verse_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_text"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/chorus_header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chorus_header_default"
+                android:textColor="@color/black"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/chorus_button_left"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="decrementChorus"
+                android:text="@string/left_button"
+                app:layout_constraintEnd_toStartOf="@+id/chorus_button_right"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/chorus_button_right"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="incrementChorus"
+                android:text="@string/right_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chorus_header_text">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/chorus_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/default_text"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
