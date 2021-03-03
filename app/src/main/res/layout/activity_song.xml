@@ -49,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/structure_text">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/verse_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2">
@@ -114,6 +115,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chorus_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2">

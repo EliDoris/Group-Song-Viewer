@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 
 @Suppress("UNUSED_PARAMETER")
 class SongActivity : AppCompatActivity() {
@@ -45,14 +46,12 @@ class SongActivity : AppCompatActivity() {
         highlightStructure()
 
         //Set verse header and text
-        val verseHeaderText = findViewById<TextView>(R.id.verse_header_text)
         val verseText = findViewById<TextView>(R.id.verse_text)
         //Check values
         if (vMax < 0) {
             //No verses, remove views
-            (verseHeaderText.parent as ViewGroup).removeView(verseHeaderText)
-            (verseText.parent as ViewGroup).removeView(verseText)
-            removeVerseButtons()
+                val verseConstraintLayout = findViewById<ConstraintLayout>(R.id.verse_constraint_layout)
+            (verseConstraintLayout.parent as ViewGroup).removeView(verseConstraintLayout)
         } else {
             //At least one verse
             if (vMax > 0) {
@@ -66,14 +65,12 @@ class SongActivity : AppCompatActivity() {
         }
 
         //Set chorus header and text
-        val chorusHeaderText = findViewById<TextView>(R.id.chorus_header_text)
         val chorusText = findViewById<TextView>(R.id.chorus_text)
         //Check values
         if (cMax < 0) {
             //No choruses, remove views
-            (chorusHeaderText.parent as ViewGroup).removeView(chorusHeaderText)
-            (chorusText.parent as ViewGroup).removeView(chorusText)
-            removeChorusButtons()
+            val chorusConstraintLayout = findViewById<ConstraintLayout>(R.id.chorus_constraint_layout)
+            (chorusConstraintLayout.parent as ViewGroup).removeView(chorusConstraintLayout)
         } else {
             if (cMax > 0) {
                 //More than one chorus
@@ -186,7 +183,7 @@ class SongActivity : AppCompatActivity() {
         //Only need to do this if there is more than one verse
         if (vMax > 0) {
             //Pattern string
-            val patternStr = "V"+(vIndex+1).toString()
+            val patternStr = "V"+(vIndex+1).toString()+"(?!\\d)"
             //Match the pattern
             val regex = patternStr.toRegex()
             val matchResults = regex.findAll(sString.toString())
@@ -199,7 +196,7 @@ class SongActivity : AppCompatActivity() {
         //Only need to do this if there is more than one chorus
         if (cMax > 0) {
             //Pattern string
-            val patternStr = "C"+(cIndex+1).toString()
+            val patternStr = "C"+(cIndex+1).toString()+"(?!\\d)"
             //Match the pattern
             val regex = patternStr.toRegex()
             val matchResults = regex.findAll(sString.toString())
