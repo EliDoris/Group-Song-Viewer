@@ -35,7 +35,25 @@ class DataSource(private val context: Context) {
             }
         }
         //Return the song list
-        return sList.toTypedArray()
+        return sortSongInfo(sList.toTypedArray(),0)
+    }
+
+    //Sort functionality. Sorts according to the modality requested
+    fun sortSongInfo(sList: Array<SongInfo>, mode: Int): Array<SongInfo> {
+        when (mode) {
+            0 -> sList.sortBy{ ignoreThe(it.title).toLowerCase()} // Sort by title
+            1 -> sList.sortBy{ ignoreThe(it.artist).toLowerCase()} // Sort by artist
+        }
+        return sList
+    }
+
+    //Function for ignoring "The " in titles/artists
+    fun ignoreThe(inputStr: String): String {
+        return if (inputStr.startsWith("the ", true)) {
+            inputStr.substring(4,inputStr.length)
+        } else {
+            inputStr
+        }
     }
 
     //Parse function
