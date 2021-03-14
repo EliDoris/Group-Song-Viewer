@@ -8,6 +8,7 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/display_text_size"
+        app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true"
         tools:useSimpleSummaryProvider="true" />
     <EditTextPreference
@@ -16,6 +17,7 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/first_line_margin"
+        app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true" />
     <EditTextPreference
         android:defaultValue="@string/wrapped_line_margin_default"
@@ -23,10 +25,11 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/wrapped_line_margin"
+        app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true" />
     <Preference
         android:key="reset_preferences"
         android:title="Reset Preferences"
-        />
+        app:iconSpaceReserved="false" />
 
 </PreferenceScreen>
