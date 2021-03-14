@@ -6,4 +6,16 @@
     <string name="chorus_header_default">Chorus:</string>
     <string name="left_button">&lt;</string>
     <string name="right_button">&gt;</string>
+    <!-- Preference Titles -->
+
+    <!-- Messages Preferences -->
+
+    <!-- Sync Preferences -->
+    <string name="first_line_margin">First Line Margin (pixels)</string>
+    <string name="wrapped_line_margin">Wrapped Line Margin (pixels)</string>
+    <string name="display_text_size">Content Text Size (sp)</string>
+    <string name="first_line_margin_default">0</string>
+    <string name="display_text_size_default">18</string>
+    <string name="wrapped_line_margin_default">40</string>
+    <string name="preference_screen_title">Preferences</string>
 </resources>

@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupSongViewer"
         tools:ignore="AllowBackup">
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".SongActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

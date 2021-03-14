@@ -4,8 +4,10 @@ import android.content.Intent
 import android.content.res.AssetManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 import java.nio.file.Files
@@ -28,7 +30,16 @@ class MainActivity : AppCompatActivity(), CellClickListener {
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.adapter = SongFileAdapter(infoList,this)
 
+        //Go to settings when prompted
+        val toolbar = findViewById<Toolbar>(R.id.main_menu_toolbar)
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
+
+        
     }
+
 
     //This happens any time a song title/artist is clicked
     override fun onCellClickListener(sInfo: SongInfo) {
