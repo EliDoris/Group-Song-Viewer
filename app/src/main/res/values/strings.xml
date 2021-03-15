@@ -22,5 +22,5 @@
     <string name="sort_title_value">0</string>
     <string name="sort_artist_entry">Sort by Artist</string>
     <string name="sort_artist_value">1</string>
-    <string name="sort_preference">Sort Preference</string>
+    <string name="sort_preference">Song Sort Preference</string>
 </resources>
