@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity(), CellClickListener {
 
         //Do the recycler view thing
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-        recyclerView.adapter = SongFileAdapter(infoList,this)
+        val sAdapter = SongFileAdapter(infoList, this, this)
+        recyclerView.adapter = sAdapter
 
         //Go to settings when prompted
         val toolbar = findViewById<Toolbar>(R.id.main_menu_toolbar)

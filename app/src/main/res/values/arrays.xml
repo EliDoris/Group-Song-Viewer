@@ -9,4 +9,14 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="sort_option_entries">
+        <item>@string/sort_title_entry</item>
+        <item>@string/sort_artist_entry</item>
+    </string-array>
+
+    <string-array name="sort_option_values">
+        <item>@string/sort_title_value</item>
+        <item>@string/sort_artist_value</item>
+    </string-array>
 </resources>

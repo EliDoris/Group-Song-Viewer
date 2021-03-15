@@ -27,6 +27,13 @@
         android:title="@string/wrapped_line_margin"
         app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true" />
+    <ListPreference
+        android:defaultValue="@string/sort_title_value"
+        android:entries="@array/sort_option_entries"
+        android:entryValues="@array/sort_option_values"
+        android:key="sort_preference"
+        android:title="@string/sort_preference"
+        app:iconSpaceReserved="false" />
     <Preference
         android:key="reset_preferences"
         android:title="Reset Preferences"

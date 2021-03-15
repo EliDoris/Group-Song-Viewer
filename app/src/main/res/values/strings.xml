@@ -18,4 +18,9 @@
     <string name="display_text_size_default">18</string>
     <string name="wrapped_line_margin_default">40</string>
     <string name="preference_screen_title">Preferences</string>
+    <string name="sort_title_entry">Sort by Title</string>
+    <string name="sort_title_value">0</string>
+    <string name="sort_artist_entry">Sort by Artist</string>
+    <string name="sort_artist_value">1</string>
+    <string name="sort_preference">Sort Preference</string>
 </resources>

@@ -3,11 +3,14 @@ package com.example.groupsongviewer
 import android.content.Context
 import android.content.res.AssetManager
 import android.util.Xml
+import android.widget.Toast
+import androidx.preference.PreferenceManager
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
+import java.util.*
 
 class DataSource(private val context: Context) {
 
@@ -34,21 +37,26 @@ class DataSource(private val context: Context) {
                 }
             }
         }
-        //Return the song list
-        return sortSongInfo(sList.toTypedArray(),0)
+        //Return the song list according to preferences
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this.context)
+        var sortMode = prefs.getString("sort_preference","0")?.toInt()
+        if (sortMode == null) {
+            sortMode = 0
+        }
+        return sortSongInfo(sList.toTypedArray(),sortMode)
     }
 
     //Sort functionality. Sorts according to the modality requested
-    fun sortSongInfo(sList: Array<SongInfo>, mode: Int): Array<SongInfo> {
+    private fun sortSongInfo(sList: Array<SongInfo>, mode: Int): Array<SongInfo> {
         when (mode) {
-            0 -> sList.sortBy{ ignoreThe(it.title).toLowerCase()} // Sort by title
-            1 -> sList.sortBy{ ignoreThe(it.artist).toLowerCase()} // Sort by artist
+            0 -> sList.sortBy{ ignoreThe(it.title).toLowerCase(Locale.ROOT)} // Sort by title
+            1 -> sList.sortBy{ ignoreThe(it.artist).toLowerCase(Locale.ROOT)} // Sort by artist
         }
         return sList
     }
 
     //Function for ignoring "The " in titles/artists
-    fun ignoreThe(inputStr: String): String {
+    private fun ignoreThe(inputStr: String): String {
         return if (inputStr.startsWith("the ", true)) {
             inputStr.substring(4,inputStr.length)
         } else {

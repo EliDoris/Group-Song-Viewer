@@ -1,12 +1,16 @@
 package com.example.groupsongviewer
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 
-class SongFileAdapter(private val songList: Array<SongInfo>, private val cellClickListener: CellClickListener):
+class SongFileAdapter(private var songList: Array<SongInfo>, private val cellClickListener: CellClickListener, adapterContext: Context):
     RecyclerView.Adapter<SongFileAdapter.SongViewHolder>() {
 
     // Describes an item view and its place within the RecyclerViewer
@@ -41,5 +45,21 @@ class SongFileAdapter(private val songList: Array<SongInfo>, private val cellCli
             cellClickListener.onCellClickListener(songList[position])
         }
     }
+
+    //Listener for preference changes. When sorting preference changes, this will update the recycler view with a new sorted list
+    var prefsChangedListener = SharedPreferences.OnSharedPreferenceChangeListener{
+        _, key ->
+        if (key == "sort_preference") {
+            this.songList = DataSource(adapterContext).getSongInfo()
+            notifyDataSetChanged()
+        }
+    }
+    //Register the preference changes
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        PreferenceManager.getDefaultSharedPreferences(recyclerView.context).registerOnSharedPreferenceChangeListener(prefsChangedListener)
+    }
+
+
 }
 
