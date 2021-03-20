@@ -23,4 +23,12 @@
     <string name="sort_artist_entry">Sort by Artist</string>
     <string name="sort_artist_value">1</string>
     <string name="sort_preference">Song Sort Preference</string>
+    <string name="external_song_file_location">External Song File Location</string>
+    <string name="external_song_file_location_default">/</string>
+    <string name="source_internal_entry">Default Songs</string>
+    <string name="source_internal_value">source_internal</string>
+    <string name="source_external_entry">Songs From External Location</string>
+    <string name="source_external_value">source_external</string>
+    <string name="source_both_entry">Both</string>
+    <string name="source_both_value">source_both</string>
 </resources>

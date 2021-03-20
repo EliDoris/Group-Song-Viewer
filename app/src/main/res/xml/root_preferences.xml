@@ -34,6 +34,18 @@
         android:key="sort_preference"
         android:title="@string/sort_preference"
         app:iconSpaceReserved="false" />
+    <ListPreference
+        android:defaultValue="source_internal"
+        android:entries="@array/source_option_entries"
+        android:entryValues="@array/source_option_values"
+        android:key="source_preference"
+        android:title="Song Source Preference"
+        app:iconSpaceReserved="false" />
+    <Preference
+        android:defaultValue="@string/external_song_file_location_default"
+        android:key="external_song_file_location"
+        android:title="@string/external_song_file_location"
+        app:iconSpaceReserved="false" />
     <Preference
         android:key="reset_preferences"
         android:title="Reset Preferences"

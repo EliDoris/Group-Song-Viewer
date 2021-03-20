@@ -19,4 +19,16 @@
         <item>@string/sort_title_value</item>
         <item>@string/sort_artist_value</item>
     </string-array>
+
+    <string-array name="source_option_entries">
+        <item>@string/source_internal_entry</item>
+        <item>@string/source_external_entry</item>
+        <item>@string/source_both_entry</item>
+    </string-array>
+
+    <string-array name="source_option_values">
+        <item>@string/source_internal_value</item>
+        <item>@string/source_external_value</item>
+        <item>@string/source_both_value</item>
+    </string-array>
 </resources>
