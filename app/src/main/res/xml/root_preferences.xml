@@ -39,7 +39,7 @@
         android:entries="@array/source_option_entries"
         android:entryValues="@array/source_option_values"
         android:key="source_preference"
-        android:title="Song Source Preference"
+        android:title="@string/source_preference"
         app:iconSpaceReserved="false" />
     <Preference
         android:defaultValue="@string/external_song_file_location_default"

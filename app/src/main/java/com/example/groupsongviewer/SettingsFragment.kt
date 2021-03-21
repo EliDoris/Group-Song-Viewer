@@ -1,6 +1,7 @@
 package com.example.groupsongviewer
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -8,17 +9,19 @@ import android.os.Bundle
 import android.provider.DocumentsContract
 import android.text.InputType
 import android.widget.Toast
-import androidx.core.net.toUri
+import androidx.documentfile.provider.DocumentFile
 import androidx.fragment.app.Fragment
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import java.net.URI
 
 //Identifier for return value from intent
 const val EXTRA_DOCTREE = 101
 
 class SettingsFragment : PreferenceFragmentCompat() {
+
 
     @SuppressLint("ApplySharedPref")
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -52,7 +55,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         externalLocationButton?.setOnPreferenceClickListener {
             //Load preferences and get URI from the preference string
             val prefs = PreferenceManager.getDefaultSharedPreferences(this.context)
-            val uri: Uri = prefs.getString("external_song_file_location","/")?.toUri()!!
+            val uri = Uri.parse(prefs.getString("external_song_file_location","/"))
             //Do the opening of the directory
             openDirectory(uri)
             //Obligatory true return
@@ -60,7 +63,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
         val externalLocationPreference: Preference? = findPreference("external_song_file_location")
         val prefs = PreferenceManager.getDefaultSharedPreferences(this.context)
-        externalLocationPreference?.summary = prefs.getString("external_song_file_location","")
+        externalLocationPreference?.summary = Uri.decode(prefs.getString("external_song_file_location",""))
 
     }
 
@@ -71,19 +74,25 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
         startActivityForResult(intent, EXTRA_DOCTREE)
     }
+
     //Function for handling a received activity result. Currently only handles file location
     @SuppressLint("ApplySharedPref")
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         //Verify the right code
-        if (requestCode == EXTRA_DOCTREE) {
+        if (resultData != null && requestCode == EXTRA_DOCTREE) {
             //Use the result to update preferences
-            resultData?.data?.also {uri ->
+            val contentResolver = this.requireContext().contentResolver
+            resultData.data?.also { uri ->
+                //Decode string
+                val uriStr = uri.toString()
                 //Set preference
                 val prefs = PreferenceManager.getDefaultSharedPreferences(this.context)
-                prefs.edit().putString("external_song_file_location",uri.toString()).commit()
+                prefs.edit().putString("external_song_file_location",uriStr).commit()
                 //Update summary
                 val externalLocationPreference: Preference? = findPreference("external_song_file_location")
-                externalLocationPreference?.summary = uri.toString()
+                externalLocationPreference?.summary = Uri.decode(uriStr)
+                //Persist permissions
+                contentResolver.takePersistableUriPermission(uri,Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
         }
     }

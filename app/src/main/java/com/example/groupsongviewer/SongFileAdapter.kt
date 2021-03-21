@@ -47,9 +47,9 @@ class SongFileAdapter(private var songList: Array<SongInfo>, private val cellCli
     }
 
     //Listener for preference changes. When sorting preference changes, this will update the recycler view with a new sorted list
-    var prefsChangedListener = SharedPreferences.OnSharedPreferenceChangeListener{
+    private var prefsChangedListener = SharedPreferences.OnSharedPreferenceChangeListener{
         _, key ->
-        if (key == "sort_preference") {
+        if (key == "sort_preference" || key == "external_song_file_location" || key == "source_preference") {
             this.songList = DataSource(adapterContext).getSongInfo()
             notifyDataSetChanged()
         }
